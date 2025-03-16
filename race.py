@@ -1,3 +1,4 @@
+#!~/.pyenv/versions/3.10.15/bin/python
 import os
 import pathlib
 import random
@@ -24,6 +25,8 @@ def thread_fn_1():
             old_value = g_value.count
             increment = random.randint(1, 5)
             g_value.count += increment
+            # if old_value + increment != g_value.count:
+                # breakpoint()
             assert (
                 g_value.count == old_value + increment
             ), f"{g_value.count=}, {old_value=}, {increment=}"

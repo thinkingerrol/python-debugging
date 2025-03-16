@@ -8,7 +8,17 @@ if [ ! -d "$PYENV_ROOT" ]; then
     git clone https://github.com/pyenv/pyenv.git "$PYENV_ROOT"
 fi
 
-# Ensure an appropriate Python version is installed
+# Ensure the Pyenv requirements (in this case for Ubuntu) are installed
+# https://github.com/pyenv/pyenv/wiki#suggested-build-environment
+
+```bash
+sudo apt update
+sudo apt install build-essential libssl-dev zlib1g-dev \
+  libbz2-dev libreadline-dev libsqlite3-dev curl git \
+  libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+```
+
+# Use pyenv to build and install an appropriate Python version
 
 PY_VERSION="3.10.15"
 # For optimal debug information we set `-g3 -Og`.
@@ -22,4 +32,4 @@ PYTHON_CFLAGS="-g3 -Og" \
 
 
 # Make the python version available in the current shell
-export PATH="$PYENV_ROOT/versions/$PY_VERSION/bin:$PATH"
+export PATH="$HOME/.pyenv/versions/$PY_VERSION/bin:$PATH"

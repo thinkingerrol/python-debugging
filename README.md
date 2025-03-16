@@ -17,8 +17,17 @@ Clone the repository or copy the following files into your current working direc
 
 and start UDB while sourcing the `libpython.gdb` file from the same directory
 
-```
-$ udb --ex "source ./libpython.gdb"
+```bash
+source ./setup-python
+udb --ex "source ./libpython.gdb"
+# assuming PY_VERSION="3.10.15" in setup-python
+add-auto-load-safe-path ~/.pyenv/versions/3.10.15/bin/python3.10-gdb.py
+file python
+layout python
+run race.py
+py-bt
+pyra
+...
 ```
 
 The supported version of Python is currently cpython 3.10. The interpreter must have been compiled with full debug information (`-g3`) and without cpython's "computed gotos" feature.
